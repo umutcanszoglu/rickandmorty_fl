@@ -25,8 +25,11 @@ class LocationPage extends StatelessWidget {
               itemBuilder: (context, idx, item) {
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 16.0),
-                  child: LocationCard(
-                    location: item,
+                  child: Obx(
+                    () => LocationCard(
+                      location: item,
+                      chars: controller.charList[item.id],
+                    ),
                   ),
                 );
               },

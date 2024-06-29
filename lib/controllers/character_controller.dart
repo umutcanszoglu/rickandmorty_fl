@@ -15,15 +15,7 @@ class CharacterController extends GetxController {
       },
     );
     characterPaginated.freshFetch();
-    getCharactersById([1]);
-    super.onInit();
-  }
 
-  Future<List<CharacterModel>?> getCharactersById(List<int> id) async {
-    var chars = await RickAndMortyService.getCharactersById(id);
-    for (var element in chars ?? []) {
-      print(element.name);
-    }
-    return chars;
+    super.onInit();
   }
 }

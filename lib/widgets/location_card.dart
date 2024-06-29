@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:rickandmorty_fl/models/character_model.dart';
 import 'package:rickandmorty_fl/models/location_model.dart';
 import 'package:rickandmorty_fl/utils/theme.dart';
+import 'package:rickandmorty_fl/widgets/mini_card.dart';
 
 class LocationCard extends StatelessWidget {
-  const LocationCard({super.key, required this.location});
+  const LocationCard({super.key, required this.location, this.chars});
   final LocationModel location;
+  final List<CharacterModel>? chars;
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +40,15 @@ class LocationCard extends StatelessWidget {
           Text(location.name, style: FontStyles.myFont.copyWith(fontSize: 20)),
           Text("Dimenson: ${location.dimension}", style: FontStyles.myFont),
           Text("Type: ${location.type}", style: FontStyles.myFont),
+          if (chars != null)
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  ...chars!.map((e) => MiniCard(character: e)),
+                ],
+              ),
+            ),
         ],
       ),
     );

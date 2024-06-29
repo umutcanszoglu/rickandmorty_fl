@@ -26,11 +26,11 @@ class RickAndMortyService {
     return null;
   }
 
-  static Future<List<CharacterModel>?> getCharactersById(List<int> id) async {
+  static Future<List<CharacterModel>?> getCharactersById(List<int> ids) async {
     try {
-      final response = await getDio().get("/character/", queryParameters: {"id": id});
+      final response = await getDio().get("/character/$ids");
       if (response.statusCode == 200) {
-        List<dynamic> items = response.data["results"];
+        List<dynamic> items = response.data;
         return items.map((e) => CharacterModel.fromMap(e)).toList();
       }
     } on DioException catch (e) {
@@ -67,21 +67,6 @@ class RickAndMortyService {
       debugPrint("Get Episode  DioError: $e");
     } catch (e) {
       debugPrint("Get Episode  Error: $e");
-    }
-    return null;
-  }
-
-  static Future<CharacterModel?> getChar(int id) async {
-    try {
-      final response = await getDio().get("/character/", queryParameters: {"id": id});
-      if (response.statusCode == 200) {
-        dynamic item = response.data;
-        return CharacterModel.fromMap(item);
-      }
-    } on DioException catch (e) {
-      debugPrint("Get Heroes  DioError: $e");
-    } catch (e) {
-      debugPrint("Get Heroes  Error: $e");
     }
     return null;
   }

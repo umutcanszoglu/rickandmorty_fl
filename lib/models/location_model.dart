@@ -18,6 +18,9 @@ class LocationModel {
     required this.url,
     required this.created,
   });
+  List<int> get getIds {
+    return residents.map((e) => int.parse(e.split("/").last)).toList();
+  }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
